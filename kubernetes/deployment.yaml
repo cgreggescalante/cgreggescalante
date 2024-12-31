@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cgreggescalante
+  labels:
+    app: cgreggescalante
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cgreggescalante
+  template:
+    metadata:
+      name: cgreggescalante
+      labels:
+        app: cgreggescalante
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: cgreggescalante
+          image: ghcr.io/cgreggescalante/cgreggescalante:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      restartPolicy: Always
+      
