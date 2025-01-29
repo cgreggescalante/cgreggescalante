@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conor Gregg Escalante</title>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <style>
+        body {
+            background-color: lightslategray;
+            margin: 0;
+        }
+        main {
+            background-color: aliceblue;
+            box-sizing: border-box;
+            border: 1px solid black;
+            width: 80vw;
+            max-width: 1000px;
+            min-width: min(600px, 98vw);
+            min-height: 95vh;
+            margin: auto;
+        }
+        header {
+            background-image: url("/banner.jpg");
+            background-position: center;
+            background-size: cover;
+            box-sizing: border-box;
+            height: 150px;
+            padding: 10px;
+            align-content: end;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav {
+            width: 100%;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+        nav a {
+            border: 1px solid black;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <header>Conor Gregg Escalante</header>
+    <nav hx-push-url="true">
+        <a hx-get="/home" hx-target="#content" hx-trigger="{{ if eq . "home" }}load, click{{ end }}">Home</a>
+        <a hx-get="/projects" hx-target="#content" hx-trigger="{{ if eq . "projects" }}load, click{{ end }}">Projects</a>
+        <a hx-get="/about" hx-target="#content" hx-trigger="{{ if eq . "about" }}load, click{{ end }}">About</a>
+    </nav>
+    <div id="content"></div>
+</main>
+</body>
+</html>
