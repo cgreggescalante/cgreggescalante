@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"html/template"
@@ -8,6 +9,9 @@ import (
 )
 
 func main() {
+	devFlag := flag.Bool("dev", false, "Run in development mode")
+	flag.Parse()
+
 	e := echo.New()
 
 	e.Use(middleware.Logger())
@@ -34,5 +38,9 @@ func main() {
 		return c.String(http.StatusOK, "Projects")
 	})
 
-	e.Logger.Fatal(e.Start(":8080"))
+	if devFlag != nil && *devFlag {
+		e.Logger.Fatal(e.Start(":8080"))
+	}
+
+	e.Logger.Fatal(e.Start(":80"))
 }
