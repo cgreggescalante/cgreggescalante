@@ -14,7 +14,9 @@ func main() {
 
 	e := echo.New()
 
+	e.Use(middleware.HTTPSRedirect())
 	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
 
 	indexContent := template.Must(template.ParseFiles("index.gohtml"))
 
